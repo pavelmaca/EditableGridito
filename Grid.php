@@ -15,7 +15,7 @@ class Grid extends \Nette\Application\UI\Control
 	// <editor-fold defaultstate="collapsed" desc="variables">
 
 	/** @var IModel */
-	private $model;
+	protected $model;
 
 	/** @var Paginator */
 	private $paginator;
