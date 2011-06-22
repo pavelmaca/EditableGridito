@@ -14,7 +14,7 @@ use Doctrine\ORM\QueryBuilder;
 class DoctrineQueryBuilderModel extends AbstractModel
 {
 	/** @var Doctrine\ORM\QueryBuilder */
-	private $qb;
+	protected $qb;
 
 
 	/**
