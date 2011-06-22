@@ -61,4 +61,17 @@ class DoctrineQueryBuilderModel extends AbstractModel
 				->getSingleResult();
 	}
 	
+	/**
+	 * @param object $item
+	 * @return mixed
+	 */
+	public function getUniqueId($item)
+	{
+		if (method_exists($item, $method = "get" . ucfirst($this->getPrimaryKey()))) {
+			return $item->$method();
+		} else {
+			return $item->{$this->getPrimaryKey()};
+		}
+	}
+	
 }
