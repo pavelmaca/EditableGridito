@@ -14,6 +14,9 @@ abstract class BaseButton extends \Nette\Application\UI\PresenterComponent
 {
 	/** @var string */
 	private $label;
+	
+	/** @var Nette\Utils\Html  control element template */
+	private $control;
 
 	/** @var callback */
 	private $handler;
@@ -30,6 +33,12 @@ abstract class BaseButton extends \Nette\Application\UI\PresenterComponent
 	/** @var bool */
 	private $showText = true;
 	
+	
+	public function __construct(\Nette\ComponentModel\IContainer $parent, $name){
+		parent::__construct($parent, $name);
+		
+		$this->control = Html::el('a');
+	}
 
 
 	/**
@@ -239,10 +248,14 @@ abstract class BaseButton extends \Nette\Application\UI\PresenterComponent
 	 */
 	protected function createButton($row = null)
 	{
-		$el = Html::el("a")
-			->href($this->getLink($row))
-			->data("gridito-icon", $this->icon)
-			->class(array("gridito-button", $this->showText ? null : "gridito-hide-text"));
+		$el = clone $this->control;
+		$el->href($this->getLink($row))
+			->data("gridito-icon", $this->icon);
+		$el->class[] = "gridito-button";
+		
+		if($this->showText === TRUE){
+			$el->class[] = "gridito-hide-text";
+		}
 		
 		if($this->label instanceof Html){
 			$el->setHtml($this->label);
@@ -264,6 +277,10 @@ abstract class BaseButton extends \Nette\Application\UI\PresenterComponent
 		if ($this->isVisible($row)) {
 			echo $this->createButton($row);
 		}
+	}
+	
+	public function getControlPrototype(){
+		return $this->control;
 	}
 
 }
