@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManager;
  *
  * @author Jan Marek
  */
-class SimpleDoctrineModel extends DoctrineEditableQueryBuilderModel
+class SimpleEditableDoctrineModel extends DoctrineEditableQueryBuilderModel
 {
 	public function __construct(EntityManager $em, $entityName)
 	{
