@@ -2,7 +2,7 @@
 
 namespace Gridito;
 
-use Nette\Application\UI\Form as AppForm;
+use Nette;
 
 /**
  * @author Pavel Máca
@@ -267,7 +267,7 @@ class EditableGrid extends Grid {
 	 * @param string $name 
 	 */
 	protected function createComponentEditForm($name) {
-		$form = new AppForm($this, $name);
+		$form = new Nette\Application\UI\Form($this, $name);
 		$form->addProtection();
 
 		$form->addHidden($this->getModel()->getPrimaryKey());
@@ -279,7 +279,7 @@ class EditableGrid extends Grid {
 	 * @param string $name 
 	 */
 	protected function createComponentAddForm($name) {
-		$form = new AppForm($this, $name);
+		$form = new Nette\Application\UI\Form($this, $name);
 		$form->addProtection();
 		
 		$form->onSubmit[] = $this->createSubmitHandler(self::MESSAGE_ADD, true);
@@ -288,14 +288,14 @@ class EditableGrid extends Grid {
 	/*	 * *************** Aliases ****** */
 
 	/**
-	 * @return AppForm 
+	 * @return Nette\Application\UI\Form
 	 */
 	public function getEditableForm() {
 		return $this["editForm"];
 	}
 	
 	/**
-	 * @return AppForm 
+	 * @return Nette\Application\UI\Form
 	 */
 	public function getAddableForm() {
 		return $this["addForm"];
