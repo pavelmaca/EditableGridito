@@ -393,7 +393,7 @@ class Grid extends \Nette\Application\UI\Control
 	{
 		foreach	($options as $option => $value) {
 			$method = "set" . ucfirst($option);
-			if (method_exists($object, $method)) {
+			if (is_callable(array($object, $method))){ 
 				$object->$method($value);
 			} else {
 				throw new \InvalidArgumentException("Option with name $option does not exist.");
