@@ -258,7 +258,7 @@ class EditableGrid extends Grid {
 	  protected function createComponentAddForm($name){
 	  $this->createBaseForm($name);
 
-	  $this->editableForm->onSubmit[] = $this->createSubmitHandler(true, $this->insertedMessage);
+	  $this->editableForm->onSuccess[] = $this->createSubmitHandler(true, $this->insertedMessage);
 	  } */
 
 	/*	 * *************** Factory ****** */
@@ -272,7 +272,7 @@ class EditableGrid extends Grid {
 
 		$form->addHidden($this->getModel()->getPrimaryKey());
 
-		$form->onSubmit[] = $this->createSubmitHandler(self::MESSAGE_EDIT);
+		$form->onSuccess[] = $this->createSubmitHandler(self::MESSAGE_EDIT);
 	}
 	
 	/**
@@ -282,7 +282,7 @@ class EditableGrid extends Grid {
 		$form = new Nette\Application\UI\Form($this, $name);
 		$form->addProtection();
 		
-		$form->onSubmit[] = $this->createSubmitHandler(self::MESSAGE_ADD, true);
+		$form->onSuccess[] = $this->createSubmitHandler(self::MESSAGE_ADD, true);
 	}
 	
 	/*	 * *************** Aliases ****** */
